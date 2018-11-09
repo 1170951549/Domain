@@ -1,0 +1,63 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    padding: 0 !important;
+    margin: 0;
+    font-size: 14px;
+    background-color: #F3F3F3;
+}
+ol,ul,li{
+    list-style: none;
+}
+h1, h2, h3{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+a{
+    cursor:pointer;
+    text-decoration: none;
+    color: white;
+}
+a:hover{
+    text-decoration: none;
+}
+input,button{
+    outline:none;
+}
+img{
+    border: 0;
+    vertical-align: middle;
+}
+/*css为clearfix，清除浮动*/
+.clearfix::before,
+.clearfix::after{
+    content: "";
+    height: 0;
+    line-height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+.clearfix:after{clear:both;}
+.clearfix{
+    *zoom:1;/*IE/7/6*/
+}
+/*对勾*/
+.glyphicon-ok{
+    color: #259B24;
+    font-size: 20px;
+}
+.glyphicon-remove{
+    color: #E51C23;
+    font-size: 20px;
+}
+/*模态框*/
+.modal-title{
+    text-align: center;
+    font-weight: bold;
+}
+.modal-footer{
+    border-top: 0;
+}

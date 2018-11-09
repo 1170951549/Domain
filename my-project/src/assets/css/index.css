@@ -1,0 +1,226 @@
+/*头部*/
+.header .navbar-inverse .navbar-brand{
+    color: white;
+}
+.header .navbar-inverse .navbar-nav>li>a{
+    color: white;
+}
+.header .navbar{
+    margin-bottom: 0;
+    border-radius: 0;
+    background-color: #101010;
+}
+.header .nav>li{
+    margin-top: 10px;
+}
+.header .nav>li>a{
+    padding: 5px 25px;
+}
+.header .signUP,.header .exit{
+    background-color: #00A4FF;
+}
+/*轮播搜索*/
+.banner{
+    padding: 15px;
+    height: 345px;
+    background-color: #101010;
+}
+.bannerLift{
+    float: left;
+    /*width: 50%;*/
+    padding: 35px;
+}
+.bannerLift p{
+    margin: 10px 0 50px 0;
+}
+.bannerLift h1,.bannerLift p{
+    color: white;
+}
+.bannerLift form input{
+    float: left;
+    width: 80%;
+    height: 45px;
+}
+.bannerLift form button{
+    float: left;
+    /*padding: 0 35px;*/
+    width: 20%;
+    height: 45px;
+    border: 0;
+    background-color: #108CEE;
+    color: white;
+    font-size: 20px;
+}
+.bannerRight{
+    float: right;
+}
+.bannerRight a{
+    display: block;
+    /*width: 370px;*/
+    /*height: 300px;*/
+}
+.bannerRight a img{
+    width: 100%;
+    /*height: 100%;*/
+}
+/*表格*/
+.contentTable{
+    padding: 0 20px;
+    height: 600px;
+    background-color: #EFF3F6;
+    overflow: hidden;
+}
+.contentTable .thead{
+    margin: 0;
+}
+.contentTable .thead li{
+    float: left;
+    width: 25%;
+    height: 47px;
+    line-height: 47px;
+    background-color: #E3E8EE;
+    padding-left: 10px;
+}
+.contentTable .thead li:nth-of-type(2),.contentTable .thead li:nth-of-type(3),
+.contentTable .tbody li span:nth-of-type(2),.contentTable .tbody li span:nth-of-type(3)
+{
+    text-align: center;
+}
+.contentTable .tbody li{
+    margin-bottom: 5px;
+    height: 43px;
+    border-break: 1px solid white;
+    box-shadow: 0px 1px 1px #888888;
+    overflow: hidden;
+}
+.contentTable .tbody li span{
+    float: left;
+    width: 25%;
+    height: 43px;
+    line-height: 43px;
+    background-color: white;
+    padding-left: 10px;
+}
+.contentTable .tfoot,.monitorPag{
+    float: right;
+
+}
+.contentTable .tfoot li,.monitorPag li{
+    float: left;
+    margin: 0 10px;
+}
+.contentTable .tfoot select,.monitorPag select{
+    padding: 5px 20px;
+}
+.contentTable .tfoot span,.monitorPag span{
+    display: block;
+    float: left;
+    padding: 10px 15px 0;
+    font-size: 17px;
+
+}
+.contentTable .tfoot .tableBtn,.monitorPag .tableBtn{
+    display: block;
+    float: left;
+    color: #0EB0F0;
+    font-size: 30px;
+    font-weight: bold;
+    cursor:pointer;
+}
+/*底部footer*/
+.footer{
+    position: relative;
+    bottom: 0;
+    margin-top: 50px;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    background-color: #2B303B;
+    overflow: hidden;
+}
+.footer p{
+    text-align: center;
+    color: #FFFFFF;
+}
+/*登录*/
+.form-control{
+    border-radius: 0;
+}
+.form-control.verify{
+    width: 80%;
+    float: left;
+}
+.form-control.verifyOK{
+    width: 20%;
+    float: left;
+}
+.form-group{
+    margin-bottom: 50px;
+}
+.loginBtn,.signUpBtn,.findPasdBtn,.alterInfoEmail{
+    padding: 10px 0;
+    margin-left: 17%;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    background-color: #00A4FF;
+}
+.loginBtn:hover,.signUpBtn:hover,.findPasdBtn:hover,.alterInfoEmail:hover{
+    color: white;
+}
+.modal-footer a{
+    color: #2E7ECD;
+}
+.modal-footer a:hover{
+    color: #00A4FF;
+}
+.modal-footer p{
+    font-weight: bold;
+}
+.modal-footer p a{
+    color: #4AB2EC;
+}
+/*个人信息*/
+.centerInfo li{
+    margin-bottom: 20px;
+}
+.centerInfo li span:nth-of-type(1){
+    font-size: 15px;
+    font-weight: bold;
+}
+.alterInfo .form-group{
+    margin-bottom: 20px;
+}
+#center .modal-title span{
+    display: block;
+    float: left;
+    padding: 10px 15px;
+    color: #B9B9B9;
+    cursor:pointer;
+}
+#center .modal-title span.active{
+    border-bottom: 3px solid #008AF1;
+    color: #101010;
+}
+/*监测域名*/
+#monitor table{
+    width: 100%;
+    border: 1px solid #BBBBBB;
+}
+#monitor table tr{
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    border-bottom: 1px solid #BBBBBB;
+}
+#monitor table tr a{
+    color: #18A0F7;
+}
+#monitor .modal-footer{
+    margin-top: 0;
+}
+@media screen and (max-width: 768px) {
+    .bannerRight {
+        display: none;
+    }
+}

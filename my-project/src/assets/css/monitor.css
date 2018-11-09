@@ -1,0 +1,64 @@
+/*表格*/
+.contentTable{
+    padding: 0 !important;
+    height: 600px;
+    background-color: #EFF3F6;
+    overflow: hidden;
+}
+.contentTable .thead{
+    margin: 0;
+}
+.contentTable .thead li{
+    float: left;
+    width: 25%;
+    height: 47px;
+    line-height: 47px;
+    background-color: #E3E8EE;
+    padding-left: 10px;
+}
+.contentTable .thead li:nth-of-type(2),.contentTable .thead li:nth-of-type(3),
+.contentTable .tbody li span:nth-of-type(2),.contentTable .tbody li span:nth-of-type(3)
+{
+    text-align: center;
+}
+.contentTable .tbody li{
+    margin-bottom: 5px;
+    height: 43px;
+    border-break: 1px solid white;
+    box-shadow: 0px 1px 1px #888888;
+    overflow: hidden;
+}
+.contentTable .tbody li span{
+    float: left;
+    width: 25%;
+    height: 43px;
+    line-height: 43px;
+    background-color: white;
+    padding-left: 10px;
+}
+.contentTable .tfoot,.monitorPag{
+    float: right;
+
+}
+.contentTable .tfoot li,.monitorPag li{
+    float: left;
+    margin: 0 10px;
+}
+.contentTable .tfoot select,.monitorPag select{
+    padding: 5px 20px;
+}
+.contentTable .tfoot span,.monitorPag span{
+    display: block;
+    float: left;
+    padding: 10px 15px 0;
+    font-size: 17px;
+
+}
+.contentTable .tfoot .tableBtn,.monitorPag .tableBtn{
+    display: block;
+    float: left;
+    color: #0EB0F0;
+    font-size: 30px;
+    font-weight: bold;
+    cursor:pointer;
+}
