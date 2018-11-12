@@ -13,14 +13,14 @@
               <div class="form-group">
                 <label for="logInUser" class="col-sm-2 control-label">用户名:</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="logInUser" placeholder="请输入用户名" name="user">
+                  <input type="text" class="form-control" id="logInUser" placeholder="请输入用户名" name="user" v-model="userLogin.用户名">
                   <em style="color: red;display: none;position: absolute"></em>
                 </div>
               </div>
               <div class="form-group">
                 <label for="logInPassword" class="col-sm-2 control-label">密码:</label>
                 <div class="col-sm-8">
-                  <input type="password" class="form-control" id="logInPassword" placeholder="请输入密码" name="password">
+                  <input type="password" class="form-control" id="logInPassword" placeholder="请输入密码" name="password" v-model="userLogin.密码">
                   <em style="color: red;display: none;position: absolute"></em>
                 </div>
               </div>
@@ -44,39 +44,44 @@
             <h4 class="modal-title">用户注册</h4>
           </div>
           <div class="modal-body">
-            <form class="form-horizontal clearfix">
+            <form class="form-horizontal form-signUp clearfix">
               <div class="form-group">
                 <label for="signUpUser" class="col-sm-2 control-label">用户名:</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="signUpUser" placeholder="请输入用户名" name="user">
+                  <input type="text" class="form-control" id="signUpUser" placeholder="请输入用户名" name="用户名" v-model="userSign.用户名">
+                  <em style="color: red;display: none;position: absolute"></em>
                 </div>
               </div>
               <div class="form-group">
                 <label for="signUpEmail" class="col-sm-2 control-label">邮箱:</label>
                 <div class="col-sm-8">
-                  <input type="email" class="form-control" id="signUpEmail" placeholder="请输入邮箱" name="email">
+                  <input type="email" class="form-control" id="signUpEmail" placeholder="请输入邮箱" name="邮箱" v-model="userSign.邮箱">
+                  <em style="color: red;display: none;position: absolute"></em>
                 </div>
               </div>
               <div class="form-group">
                 <label for="signUpPassword" class="col-sm-2 control-label">密码:</label>
                 <div class="col-sm-8">
-                  <input type="password" class="form-control" id="signUpPassword" placeholder="请输入密码" name="password">
+                  <input type="password" class="form-control" id="signUpPassword" placeholder="请输入密码" name="密码" v-model="userSign.密码">
+                  <em style="color: red;display: none;position: absolute"></em>
                 </div>
               </div>
               <div class="form-group">
                 <label for="signUpPasswordOK" class="col-sm-2 control-label">确认密码:</label>
                 <div class="col-sm-8">
-                  <input type="password" class="form-control" id="signUpPasswordOK" placeholder="请再次确认密码" name="passwordOk">
+                  <input type="password" class="form-control" id="signUpPasswordOK" placeholder="请再次确认密码" name="确认密码" v-model="userSign.确认密码">
+                  <em style="color: red;display: none;position: absolute"></em>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">验证码:</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control verify"  placeholder="请输入验证码" name="verify">
-                  <input type="text" class="form-control verifyOK"  value="CNDF" name="verifyOK">
+                <div class="col-sm-8 clearfix">
+                  <input type="text" class="form-control verify"  placeholder="请输入验证码" name="verify" v-model="picLyanzhengma">
+                  <input type="text" class="form-control verifyOK"  name="verifyOK"  v-model="checkCode"  @click="createCode">
+                  <em style="color: red;display: none;position: absolute;top: 35px;"></em>
                 </div>
               </div>
-              <a class="signUpBtn col-sm-8 col-xs-8">注册</a>
+              <a class="signUpBtn col-sm-8 col-xs-8" @click="signUpBtn">注册</a>
             </form>
           </div>
           <div class="modal-footer" style="margin-top: 30px;">
@@ -227,11 +232,12 @@
               <tbody>
               <tr>
                 <td class="col-sm-10">www.baidu.com</td>
-                <td class="col-sm-2"><a href="monitor.html" target="_blank">检测域名</a></td>
+                <td class="col-sm-2"><a href="/monitor" target="_blank">检测域名</a></td>
               </tr>
               <tr>
                 <td class="col-sm-10">www.baidu.com</td>
-                <td class="col-sm-2"><a href="monitor.html" target="_blank">检测域名</a></td>
+                <td class="col-sm-2"><a href="/monitor" target="_blank">检测域名</a></td>
+                <!--<td class="col-sm-2"><router-link to="/monitor">检测域名</router-link></td>-->
               </tr>
               </tbody>
             </table>
@@ -262,12 +268,156 @@
       name: "popup",
       data(){
         return{
-
+          userSign:{
+            "用户名":"",
+            "邮箱":"",
+            "密码":"",
+            "确认密码":"",
+            "验证码":"",
+          },
+          userLogin:{
+            "用户名":"",
+            "密码":"",
+          },
+          checkCode:"",
+          picLyanzhengma:"",
         }
+      },
+      created(){//加载
+        this.createCode();
       },
       methods:{
         //登录
         loginBtn(){
+          var str = "";
+          if($("#logInUser").val()==""){
+            $("#logInUser").next().css("display","block");
+            $("#logInUser").next().text("用户名不能为空");
+            $("#logInUser").focus(function () {
+              $("#logInUser").next().css("display","none");
+            });
+            return;
+          };
+          if($("#logInPassword").val()==""){
+            $("#logInPassword").next().css("display","block");
+            $("#logInPassword").next().text("密码不能为空");
+            $("#logInPassword").focus(function () {
+              $("#logInPassword").next().css("display","none");
+            });
+            return;
+          };
+          this.$http.post('user/loginUser',this.userLogin).then((res)=>{
+            this.userLogin = res.body;
+            if(this.userLogin.err==1){
+              alert("账号或密码错误！");
+              return;
+            }else{
+              alert("登录成功！");
+              $("#logIn").hide();
+              $(".modal-backdrop.in").hide();
+              $(".navbar-nav").children().remove();
+              str +=`<li><a data-toggle="modal" data-target="#center">个人中心</a></li><li><a data-toggle="modal" data-target="#monitor">监测域名</a></li><li class="exit"><a>退出</a></li>`;
+              $(".navbar-nav").append(str);
+              $(".exit").on("click",function(){
+                window.location.reload();
+              });
+            }
+          });
+          // $("#logIn").hide();
+          // $(".modal-backdrop.in").hide();
+          // $(".navbar-nav").children().remove();
+          // str +=`<li><a data-toggle="modal" data-target="#center">个人中心</a></li><li><a data-toggle="modal" data-target="#monitor">监测域名</a></li><li class="exit"><a>退出</a></li>`;
+          // $(".navbar-nav").append(str);
+          // $(".exit").on("click",function(){
+          //   window.location.reload();
+          // });
+        },
+        //注册
+        signUpBtn(){
+          if($("#signUpUser").val()==""){
+            $("#signUpUser").next().css("display","block");
+            $("#signUpUser").next().text("用户名不能为空");
+            $("#signUpUser").focus(function () {
+              $("#signUpUser").next().css("display","none");
+            });
+            return;
+          };
+          if($("#signUpEmail").val()==""){
+            $("#signUpEmail").next().css("display","block");
+            $("#signUpEmail").next().text("邮箱不能为空");
+            $("#signUpEmail").focus(function () {
+              $("#signUpEmail").next().css("display","none");
+            });
+            return;
+          };
+          if($("#signUpPassword").val()==""){
+            $("#signUpPassword").next().css("display","block");
+            $("#signUpPassword").next().text("密码不能为空");
+            $("#signUpPassword").focus(function () {
+              $("#signUpPassword").next().css("display","none");
+            });
+            return;
+          };
+          if($("#signUpPasswordOK").val()==""){
+            $("#signUpPasswordOK").next().css("display","block");
+            $("#signUpPasswordOK").next().text("密码不能为空");
+            $("#signUpPasswordOK").focus(function () {
+              $("#signUpPasswordOK").next().css("display","none");
+            });
+            return;
+          }
+          else if($("#signUpPasswordOK").val()!=$("#signUpPassword").val()){
+            $("#signUpPasswordOK").next().css("display","block");
+            $("#signUpPasswordOK").next().text("两次密码不一致");
+            $("#signUpPasswordOK").focus(function () {
+              $("#signUpPasswordOK").next().css("display","none");
+            });
+            return;
+          };
+          if(this.picLyanzhengma==""){
+            $(".verifyOK").next().css("display","block");
+            $(".verifyOK").next().text("验证码不能为空");
+            $(".verifyOK").focus(function () {
+              $(".verifyOK").next().css("display","none");
+            });
+            return;
+          }else if(this.picLyanzhengma!=this.checkCode){
+              $(".verifyOK").next().css("display","block");
+              $(".verifyOK").next().text("验证码错误");
+              $(".verifyOK").focus(function () {
+                $(".verifyOK").next().css("display","none");
+              });
+            return;
+          }
+          this.$http.post('user/addUser',this.userSign).then((res)=>{
+            this.userSign = res.body;
+            if(this.userSign.err == -1){
+              alert("用户名重复");
+              return;
+            }else {
+              alert("注册成功");
+             console.log(this.userSign.data);
+            }
+            console.log(this.userSign);
+          });
+
+        },
+        //验证码
+        createCode(){
+          this.code = "";
+          this.checkCode = "";
+          this.picLyanzhengma = "";
+          var codeLength = 4;
+          //随机数
+          var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+          for(var i = 0; i < codeLength; i++) {
+            //取得随机数的索引（0~35）
+            var index = Math.floor(Math.random()*36);
+            //根据索引取得随机数加到code上
+            this.code += random[index];
+          }
+          //把code值赋给验证码
+          this.checkCode = this.code;
 
         },
         //个人信息切换
@@ -283,7 +433,8 @@
           $(".alterInfo").show();
           $(".centerInfo").hide();
         },
-      }
+      },
+
     };
 </script>
 

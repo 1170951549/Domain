@@ -17,7 +17,7 @@
               <!--<li><a>个人中心</a></li>-->
               <!--<li><a>监测域名</a></li>-->
               <!--<li class="exit"><a>退出</a></li>-->
-              <li><a data-toggle="modal" data-target="#logIn">登录</a></li>
+              <li><a data-toggle="modal" data-target="#logIn" >登录</a></li>
               <!--<li><a data-toggle="modal" data-target="#center">登录</a></li>-->
               <!--<li><a data-toggle="modal" data-target="#monitor">登录</a></li>-->
               <li class="signUP"><a data-toggle="modal" data-target="#signUp">注册</a></li>
@@ -25,18 +25,25 @@
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
+      <popup></popup>
     </header>
 </template>
 
 <script>
+import Popup from "./Popup";//引用弹窗
+//弹窗
 export default {
   name: "headers",
   data(){
     return{
 
     }
+  },
+  methods:{
+  },
+  components:{
+    "popup":Popup
   }
-
 };
 </script>
 
