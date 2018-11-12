@@ -61,3 +61,11 @@ img{
 .modal-footer{
     border-top: 0;
 }
+.verifyOK{
+  outline: none;
+  cursor:pointer;
+}
+.verifyOK:focus{
+  outline: none !important;
+  box-shadow: none;
+}
