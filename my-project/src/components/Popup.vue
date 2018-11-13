@@ -275,10 +275,12 @@
             "确认密码":"",
             "验证码":"",
           },
+          userSignArr:[],
           userLogin:{
             "用户名":"",
             "密码":"",
           },
+          userLoginArr:[],
           checkCode:"",
           picLyanzhengma:"",
         }
@@ -307,8 +309,8 @@
             return;
           };
           this.$http.post('user/loginUser',this.userLogin).then((res)=>{
-            this.userLogin = res.body;
-            if(this.userLogin.err==1){
+            this.userLoginArr = res.body;
+            if(this.userLoginArr.err==1){
               alert("账号或密码错误！");
               return;
             }else{
@@ -390,15 +392,15 @@
             return;
           }
           this.$http.post('user/addUser',this.userSign).then((res)=>{
-            this.userSign = res.body;
-            if(this.userSign.err == -1){
+            this.userSignArr = res.body;
+            if(this.userSignArr.err == -1){
               alert("用户名重复");
               return;
             }else {
               alert("注册成功");
-             console.log(this.userSign.data);
+             console.log(this.userSignArr.data);
             }
-            console.log(this.userSign);
+            console.log(this.userSignArr);
           });
 
         },

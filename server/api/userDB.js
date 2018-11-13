@@ -24,7 +24,7 @@ var userSchema = new Schema({
 });
 // 数据库建立
 var UserModel = mongoose.model('用户表',userSchema);
-
+//注册
 exports.addUser = function (userInfo) {
     return UserModel.findOne({"用户名": userInfo.用户名}).then(findUserDoc=>{
         if (findUserDoc === null) {

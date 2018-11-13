@@ -11,6 +11,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       "/user":{target: 'http://127.0.0.1:3010'},
+      "/urlname":{target: 'http://127.0.0.1:3010'},
     },
 
     // Various Dev Server settings
