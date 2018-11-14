@@ -9,7 +9,7 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {
+    proxyTable: {//设置路由跨域
       "/user":{target: 'http://127.0.0.1:3010'},
       "/urlname":{target: 'http://127.0.0.1:3010'},
     },

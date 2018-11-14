@@ -81,31 +81,49 @@
 .contentTable .thead li{
     float: left;
     width: 25%;
-    height: 47px;
-    line-height: 47px;
-    background-color: #E3E8EE;
-    padding-left: 10px;
+    /*height: 47px;*/
+    /*line-height: 47px;*/
+    /*background-color: #E3E8EE;*/
+    /*padding-left: 10px;*/
 }
-.contentTable .thead li:nth-of-type(2),.contentTable .thead li:nth-of-type(3),
-.contentTable .tbody li span:nth-of-type(2),.contentTable .tbody li span:nth-of-type(3)
+.contentTable .thead li p{
+  height: 47px;
+  line-height: 47px;
+  background-color: #E3E8EE;
+  padding-left: 10px;
+}
+.contentTable .thead li span{
+  display: block;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  height: 43px;
+  line-height: 43px;
+  border: 1px solid white;
+  box-shadow: 0px 1px 1px #888888;
+  background-color: white;
+  overflow: hidden;
+}
+
+.contentTable .thead li:nth-of-type(2),.contentTable .thead li:nth-of-type(3)
 {
     text-align: center;
 }
-.contentTable .tbody li{
-    margin-bottom: 5px;
-    height: 43px;
-    border-break: 1px solid white;
-    box-shadow: 0px 1px 1px #888888;
-    overflow: hidden;
-}
-.contentTable .tbody li span{
-    float: left;
-    width: 25%;
-    height: 43px;
-    line-height: 43px;
-    background-color: white;
-    padding-left: 10px;
-}
+/*.contentTable .tbody li{*/
+    /*margin-bottom: 5px;*/
+    /*height: 43px;*/
+    /*border-break: 1px solid white;*/
+    /*box-shadow: 0px 1px 1px #888888;*/
+    /*overflow: hidden;*/
+/*}*/
+/*.contentTable .tbody li span{*/
+    /*float: left;*/
+    /*width: 25%;*/
+    /*height: 43px;*/
+    /*line-height: 43px;*/
+    /*background-color: white;*/
+    /*padding-left: 10px;*/
+/*}*/
+
 .contentTable .tfoot,.monitorPag{
     float: right;
 

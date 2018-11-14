@@ -20,27 +20,34 @@
     name: "banner",
     data(){
       return{
-        realmName:[],
+        cnName:[],
+        usaName:[]
       }
     },
     methods:{
       seek(){
-        this.$http.get('urlname/test/'+ $(".realmName").val()).then((res)=>{
-          this.realmName=res.body;
-          console.log(this.realmName);
-          // console.log(this.realmName.data.urlname)
-          // if(this.realmName == 0){
-          //   this.realmName=res.body.data.urlname;
-          // }else{
-          //   console.log("查询失败");
-          // }
-          // this.realmName=this.realmName.split(",");
-          // console.log(this.realmName);
-        });
-      }
-    }
+         var realmNameAll = $(".realmName").val().split(",");
+         if(realmNameAll==""){
+           console.log("不能为空");
+            return;
+         }else{
+           for(var i=0;i<realmNameAll.length;i++){
+             this.$http.get('urlname/cn/'+ realmNameAll[i]).then((res)=>{
+               this.cnName=res;
+               console.log("中国"+" "+this.cnName.url.split("/")[2]+" "+this.cnName.status);
+             });
+             this.$http.get('urlname/usa/'+ realmNameAll[i]).then((res)=>{
+               this.usaName=res;
+               console.log("美国"+" "+this.usaName.url.split("/")[2]+" "+this.usaName.status);
 
-  }
+             });
+           }
+         }
+
+      },
+    },
+
+  };
 </script>
 
 <style scoped>
