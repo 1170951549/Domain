@@ -34,6 +34,7 @@ var testUrl=function (host, req, res) {
         });
     });
     request.on('error', function (e) {
+        //res.send(status);
         console.log('problem with request: ' + e.message);
     });
     request.end();
@@ -41,7 +42,6 @@ var testUrl=function (host, req, res) {
 //中国
 urlname.get('/cn/:urlname',(req,res)=>{
     testUrl(hosts.cn,req,res);
-
 });
 //美国
 urlname.get('/usa/:urlname',(req,res)=>{

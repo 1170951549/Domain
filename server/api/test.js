@@ -21,6 +21,8 @@ app.get('/test/:urlname',(req,res)=>{
         });
     });
     request.on('error', function (e) {//响应出错调用函数
+        //console.log(22);
+        res.send(404);
         console.log('problem with request: ' + e.message);
     });
     request.end();//结束请求

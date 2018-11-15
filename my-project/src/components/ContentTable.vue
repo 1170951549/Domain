@@ -16,24 +16,32 @@
       </div>
     </div>
     <div class="container-fluid contentTable">
-      <ul class="thead clearfix">
-        <li>
-          <p>域名</p>
-          <span v-for="item in domaiNameList">{{item.域名}}</span>
-        </li>
-        <li>
-          <p>中国</p>
-          <span v-for="cnstatus in cn">{{cnstatus.状态码}}</span>
-        </li>
-        <li>
-          <p>美国</p>
-          <span v-for="usastatus in usa">{{usastatus.状态码}}</span>
-        </li>
-        <li>
-          <p>时间</p>
-          <span v-for="cnstatus in cn">{{cnstatus|dateFrm}}</span>
-        </li>
-      </ul>
+      <!--<ul class="thead clearfix">-->
+        <!--<li>-->
+          <!--<p>域名</p>-->
+          <!--<span v-for="item in domaiNameAll">{{item.域名}}</span>-->
+        <!--</li>-->
+        <!--<li>-->
+          <!--<p>中国</p>-->
+          <!--<span v-for="cn in domaiNameAll" >{{cn.状态}}</span>-->
+        <!--</li>-->
+        <!--<li>-->
+          <!--<p>美国</p>-->
+          <!--<span v-for="item in domaiNameAll">{{item.状态}}</span>-->
+        <!--</li>-->
+        <!--<li>-->
+          <!--<p>时间</p>-->
+          <!--<span v-for="cn in domaiNameAll" >{{cn|dateFrm}}</span>-->
+        <!--</li>-->
+      <!--</ul>-->
+      <!--<ul class="tbody clearfix">-->
+          <!--<li v-for="itme in domaiNameAll">-->
+            <!--<span v-for="item in domaiNameAll">{{item.域名}}</span>-->
+            <!--<span v-for="cn in domaiNameAll" >{{cn.状态}}</span>-->
+            <!--<span v-for="cn in domaiNameAll" >{{cn.状态}}</span>-->
+            <!--<span v-for="cn in domaiNameAll" >{{cn|dateFrm}}</span>-->
+          <!--</li>-->
+      <!--</ul>-->
       <ul class="tfoot">
         <li style="padding-top: 15px">总共10条</li>
         <li style="padding-top: 5px">
@@ -58,57 +66,46 @@ export default {
   name: "content-table",
   data(){
     return{
+      realmNameAll:[],//搜索的域名
+      DomaiNameAll:[],//中国
       domaiNameAll:[],
-      domaiNameList:[],
-      cn:[],
-      usa:[],
-      realmNameAll:[]
+      hosts:{//服务器
+        'cn':'cn',
+        'usa':'usa'
+      },
     }
   },
   filters:{
     dateFrm:function(el){
-      return moment(el).format("YYYY-MM-DD");
+      return moment(el).format("YYYY-MM-DD HH:mm:ss");
     }
   },
   methods:{
-    seek(){
-      $(".thead span").remove();
-      this.realmNameAll = $(".realmName").val().split(",");
-      if(this.realmNameAll==""){
-        console.log("不能为空");
-        return;
-      }else{
-        for(var i=0;i<this.realmNameAll.length;i++){
-          //中国
-          this.$http.get('urlname/cn/'+ this.realmNameAll[i]).then((res)=>{
-            this.domaiNameAll=res;
-            this.domaiNameList.push({"域名":this.domaiNameAll.url.split("/")[2]});
-            // if(this.domaiNameAll.status==200||this.domaiNameAll.status==301){
-            //   this.domaiNameAll.status="正常"
-            // }else if(this.domaiNameAll.status==404){
-            //   this.domaiNameAll.status="错误"
-            // }
-            this.cn.push({"状态码":this.domaiNameAll.body});
-            console.log(this.cn)
-          });
-          //美国
-          this.$http.get('urlname/usa/'+ this.realmNameAll[i]).then((res)=>{
-            this.domaiNameAll=res;
-          //  this.domaiNameList.push({"域名":this.domaiNameAll.url.split("/")[2]});
-            // if(this.domaiNameAll.status==200||this.domaiNameAll.status==301){
-            //   this.domaiNameAll.status="正常"
-            // }else if(this.domaiNameAll.status==404){
-            //   this.domaiNameAll.status="错误"
-            // }
-            this.usa.push({"状态码":this.domaiNameAll.body})
-          });
-        }
-        console.log(this.realmNameAll);
+    //请求服务器
+    sendHTTP(region){
+      for (var i = 0; i < this.realmNameAll.length; i++) {
+        this.$http.get('urlname/'+region+'/' + this.realmNameAll[i]).then((res) => {
+          this.DomaiNameAll = res;
+          this.domaiNameAll.push(res);
+          // this.domaiNameAll.push({"地区":this.DomaiNameAll.url.split("/")[1],"域名": this.DomaiNameAll.url.split("/")[2], "状态": this.DomaiNameAll.body});
+        });
       };
     },
+    seek(){
+      $(".thead span").remove();
+      this.realmNameAll = $(".realmName").val().split(",");//逗号分隔
+      if(this.realmNameAll==""){
+        return;
+      }else{
+        //中国
+        this.sendHTTP(this.hosts.cn);
+        //美国
+        this.sendHTTP(this.hosts.usa);
+        // console.log( this.domaiNameAll);
+      };
+      console.log(this.domaiNameAll);
+    },
   },
-
-
 }
 </script>
 
